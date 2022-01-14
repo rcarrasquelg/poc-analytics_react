@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
+import TagManager from 'react-gtm-module';
 
 export const UpdateProfile: React.FC = () => {
 	const emailRef = useRef<HTMLInputElement | null>(null);
@@ -45,6 +46,18 @@ export const UpdateProfile: React.FC = () => {
 				setLoading(false);
 			});
 	};
+
+	TagManager.dataLayer({
+		dataLayer: {
+			event: 'pageview',
+			path: {
+				page: {
+					path: '/update-profile',
+					title: 'Update Profile',
+				},
+			},
+		},
+	});
 
 	return (
 		<>

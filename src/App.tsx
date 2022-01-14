@@ -10,6 +10,25 @@ import { PrivateRoute } from './components/PrivateRoute';
 import { ForgotPassword } from './components/ForgotPassword';
 import { UpdateProfile } from './components/UpdateProfile';
 
+import TagManager from 'react-gtm-module';
+
+const tagManagerArgs = {
+	gtmId: 'GTM-P9F7SQ8',
+};
+
+TagManager.initialize(tagManagerArgs);
+TagManager.dataLayer({
+	dataLayer: {
+		event: 'pageview',
+		path: {
+			page: {
+				path: '/Login',
+				title: 'Login',
+			},
+		},
+	},
+});
+
 function App() {
 	return (
 		<Container

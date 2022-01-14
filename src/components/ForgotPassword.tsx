@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
+import TagManager from 'react-gtm-module';
 
 export const ForgotPassword = () => {
 	const emailRef = useRef<HTMLInputElement | null>(null);
@@ -28,6 +29,18 @@ export const ForgotPassword = () => {
 
 		setLoading(false);
 	};
+
+	TagManager.dataLayer({
+		dataLayer: {
+			event: 'event',
+			path: {
+				page: {
+					path: '/forgot-password',
+					title: 'Forgot Password',
+				},
+			},
+		},
+	});
 
 	return (
 		<>

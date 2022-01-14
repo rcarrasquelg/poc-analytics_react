@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Card, Button, Alert } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
+import TagManager from 'react-gtm-module';
 
 export const Dashboard = () => {
 	const [error, setError] = useState('');
@@ -18,6 +19,19 @@ export const Dashboard = () => {
 			setError('Failed to log out');
 		}
 	}
+
+	TagManager.dataLayer({
+		dataLayer: {
+			event: 'pageview',
+			path: {
+				page: {
+					path: '/Dashboard',
+					title: 'Dashboard',
+				},
+			},
+			uuid: currentUser.uid,
+		},
+	});
 
 	return (
 		<>

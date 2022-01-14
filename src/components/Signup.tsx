@@ -3,6 +3,7 @@ import { Button, Card, Form, Alert } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import { auth } from '../firebaseConfig';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import TagManager from 'react-gtm-module';
 
 export const SignUp: FC = () => {
 	const [email, setEmail] = useState('');
@@ -30,6 +31,18 @@ export const SignUp: FC = () => {
 
 		setLoading(false);
 	};
+
+	TagManager.dataLayer({
+		dataLayer: {
+			event: 'pageview',
+			path: {
+				page: {
+					path: '/signup',
+					title: 'Sign Up',
+				},
+			},
+		},
+	});
 
 	return (
 		<>
